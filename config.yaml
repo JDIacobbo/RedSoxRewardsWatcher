@@ -1,0 +1,12 @@
+#Redsox Rewards Login Info
+username: 
+password: 
+#Browser deviceGUID
+guid: 
+#Telegram BotFather Information 
+telegram_url: 
+user_id: 
+# Length of time to wait between item checks
+sleepTimer: 120
+#Log Level (info, error, debug)
+logLevel: debug
