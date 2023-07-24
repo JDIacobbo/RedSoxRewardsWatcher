@@ -5,6 +5,7 @@ password:
 guid: 
 #Telegram BotFather Information 
 telegram_url: 
+#If posting to a bot chat enter your bot's user ID. If posting to a public channel use '@channelname'
 user_id: 
 # Length of time to wait between item checks
 sleepTimer: 120
