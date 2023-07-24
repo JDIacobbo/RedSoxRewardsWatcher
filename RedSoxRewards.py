@@ -100,9 +100,24 @@ while True:
 
             # Process the results
             if new_ids:
-                # send telegram notification with count of new items
                 logger.info(f"Number of new Ids found: {len(new_ids)}")
-                send_message(config['user_id'], f'Marketplace Updated: {len(new_ids)} new item(s) found')
+                # Set first line of Telegram message with count of new items
+                messageHeader = f'Marketplace Updated: {len(new_ids)} new item(s) found'
+                #Initialize varible to store the names of all new items
+                allNewItems = ""
+                #Check each new item for their display name
+                for new_ids in new_ids:
+                    displayname = None
+                    for item in newCount:
+                        if item['Id'] == new_ids:
+                            displayname = item['DisplayName']
+                            break
+                    # If a display name is found add it to the all new items variable
+                    if displayname is not None:
+                        print(f'The display name of {new_ids} is {displayname}')
+                        allNewItems = allNewItems + '\n' + displayname
+                # Send Telegram message with number if new items and their associated display names
+                send_message(config['user_id'], messageHeader + '\n' + allNewItems)
                 time.sleep(config['sleepTimer'])
                 currentCount = newCount
                 continue
