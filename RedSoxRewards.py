@@ -48,8 +48,15 @@ def login(username, password, guid, portal):
     }
     
     # Send login info
-    res = s.post('https://rewards.redsox.com/PortalProxy/api/token/mlbam', json=payload)
-    logger.debug('Authentication Response %s', res)
+    while True:
+        try:
+            res = s.post('https://rewards.redsox.com/PortalProxy/api/token/mlbam', json=payload)
+            logger.debug('Authentication Response %s', res)
+            break
+        except Exception as e:
+            logger.error("error when sending login request")
+            logger.error(e)
+            time.sleep(3600)
 
     #Attempt to reauthenticate if api response is not 200 (success)
     while res.status_code != 200:
